@@ -27,13 +27,12 @@ function App() {
           const jsonData = e.target.result;
           setJson(jsonData);
         } catch (error) {
-          console.error(
-            "Erreur lors de la lecture ou de l'analyse du fichier JSON :",
-            error
-          );
+          console.error(error);
         }
       };
       reader.readAsText(file);
+    } else {
+      setError("File not found");
     }
   };
 
@@ -69,6 +68,17 @@ function App() {
     setCsv("");
   };
 
+  //exporter en CSV
+
+  const exportToCsv = (event) => {
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "download.csv";
+    link.click();
+  };
+
   return (
     <section>
       <div>
@@ -82,6 +92,7 @@ function App() {
         <Button onClick={handleConversion} content="Convert" />
         <Button onClick={handleClear} content="Clear" />
         <InputArea name="csvConvert" id="csvConvert" defaultValue={csv} />
+        <Button onClick={exportToCsv} content="Save CSV" />
         {error && <span>{error}</span>}
       </div>
     </section>

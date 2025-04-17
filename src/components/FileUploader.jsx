@@ -1,7 +1,7 @@
-const FileUploader = ({ onChange, id }) => {
+const FileUploader = ({ onChange, id, accept }) => {
   return (
     <div>
-      <input type="file" onChange={onChange} accept=".json" id={id} />
+      <input type="file" onChange={onChange} id={id} accept={accept} />
     </div>
   );
 };

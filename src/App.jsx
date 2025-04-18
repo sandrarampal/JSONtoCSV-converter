@@ -1,8 +1,9 @@
 import "./App.css";
 import { useState } from "react";
-import FileUploader from "./components/FileUploader";
+import FileUploader from "./components/FileUploader/FileUploader";
 import Button from "./components/Button";
-import InputArea from "./components/InputArea";
+import InputArea from "./components/InputArea/InputArea";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 function App() {
   //Deux states, un pour le json, et un pour le csv, l'un est déclenché au remplissage de la textarea json, et l'autre au moment du submit convert, ils deviennent vides tous les deux au reset.
@@ -55,8 +56,9 @@ function App() {
     if (isValidJSON(json)) {
       //transformer la string reçue en objet
       objJson = JSON.parse(json);
-      const keys = Object.keys(objJson).join();
-      const values = Object.values(objJson).join();
+      const array = Array.isArray(objJson) ? objJson : [objJson];
+      const keys = Object.keys(array[0]).join();
+      const values = Object.values(array[0]).join();
       const csvStr = `${keys}\n${values}`;
       setCsv(csvStr);
     } else {
@@ -169,50 +171,68 @@ function App() {
 
   return (
     <section>
+      <h1>Simple JSON - CSV Converter</h1>
       <div>
-        <FileUploader
-          onChange={handleFileChange}
-          id="fileUpload"
-          accept=".json"
-        />
-        <FileUploader
-          onChange={handleFileCsvChange}
-          id="fileUpload"
-          accept=".csv"
-        />
-        <InputArea
-          name="jsonText"
-          id="jsonText"
-          value={json}
-          onChange={handleJsonChange}
-        />
-        <Button onClick={handleConvertToCsv} content="Convert to Csv" />
-        <Button onClick={handleConvertToJson} content="Convert to JSON" />
-        <Button onClick={handleClear} content="Clear" />
-        <InputArea
-          name="csvConvert"
-          id="csvConvert"
-          value={csv}
-          onChange={handleCsvChange}
-        />
-        <div>
-          <input
-            placeholder="download"
-            onChange={handleSaveChange}
-            value={saveName}
+        <div className="json-div">
+          <FileUploader
+            onChange={handleFileChange}
+            id="fileUpload"
+            accept=".json"
+            title="JSON"
           />
-          <span>.csv</span>
-        </div>
-        <div>
-          <input
-            placeholder="download"
-            onChange={handleSaveJsonChange}
-            value={saveNameJson}
+          <InputArea
+            name="jsonText"
+            id="jsonText"
+            value={json}
+            onChange={handleJsonChange}
           />
-          <span>.json</span>
+          <div className="save-file">
+            <div>
+              <input
+                placeholder="download"
+                onChange={handleSaveJsonChange}
+                value={saveNameJson}
+              />
+              <span>.json</span>
+            </div>
+            <Button onClick={exportToJson} content="Save Json" />
+          </div>
         </div>
-        <Button onClick={exportToCsv} content="Save CSV" />
-        <Button onClick={exportToJson} content="Save Json" />
+
+        <div className="buttons">
+          <Button onClick={handleConvertToCsv} content="Convert to Csv" />
+          <Button onClick={handleConvertToJson} content="Convert to JSON" />
+          <div onClick={handleClear}>
+            <RiDeleteBin6Fill />
+          </div>
+        </div>
+
+        <div className="csv-div">
+          <FileUploader
+            onChange={handleFileCsvChange}
+            id="fileUpload"
+            accept=".csv"
+            title="CSV"
+          />
+          <InputArea
+            name="csvConvert"
+            id="csvConvert"
+            value={csv}
+            onChange={handleCsvChange}
+          />
+          <div className="save-file">
+            <div>
+              <input
+                placeholder="download"
+                onChange={handleSaveChange}
+                value={saveName}
+              />
+              <span>.csv</span>
+            </div>
+            <Button onClick={exportToCsv} content="Save CSV" />
+          </div>
+        </div>
+
         {error && <span>{error}</span>}
       </div>
     </section>

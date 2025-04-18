@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+section > div {
+  display: flex;
+  gap: 100px;
+}
+
+.json-div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.csv-div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.save-file {
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-file input {
+  text-align: end;
+}
+
+h1 {
+  text-align: center;
+  font-size: 36px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.buttons div {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.buttons div:hover {
+  cursor: pointer;
+}

@@ -1,3 +1,5 @@
+import "./InputArea.css";
+
 const InputArea = ({ name, id, value, defaultValue, onChange }) => {
   return (
     <textarea

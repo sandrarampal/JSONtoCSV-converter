@@ -205,6 +205,7 @@ function App() {
           <div onClick={handleClear}>
             <RiDeleteBin6Fill />
           </div>
+          {error && <span>{error}</span>}
         </div>
 
         <div className="csv-div">
@@ -232,8 +233,6 @@ function App() {
             <Button onClick={exportToCsv} content="Save CSV" />
           </div>
         </div>
-
-        {error && <span>{error}</span>}
       </div>
     </section>
   );

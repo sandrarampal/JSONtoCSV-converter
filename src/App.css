@@ -21,17 +21,19 @@ section {
 
 section > div {
   display: flex;
-  gap: 100px;
+  gap: 80px;
 }
 
 .json-div {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 370px;
   align-items: center;
 }
 .csv-div {
   display: flex;
+  width: 370px;
   flex-direction: column;
   align-items: center;
   gap: 20px;
@@ -60,6 +62,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 200px;
   gap: 50px;
 }
 
@@ -87,6 +90,10 @@ input {
 
 .buttons button {
   width: 100px;
+}
+
+.buttons span {
+  color: red;
 }
 
 button {

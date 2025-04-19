@@ -200,8 +200,8 @@ function App() {
         </div>
 
         <div className="buttons">
-          <Button onClick={handleConvertToCsv} content="Convert to Csv" />
-          <Button onClick={handleConvertToJson} content="Convert to JSON" />
+          <Button onClick={handleConvertToCsv} content="> CSV" />
+          <Button onClick={handleConvertToJson} content="< JSON" />
           <div onClick={handleClear}>
             <RiDeleteBin6Fill />
           </div>
@@ -210,7 +210,7 @@ function App() {
         <div className="csv-div">
           <FileUploader
             onChange={handleFileCsvChange}
-            id="fileUpload"
+            id="fileUploadCsv"
             accept=".csv"
             title="CSV"
           />

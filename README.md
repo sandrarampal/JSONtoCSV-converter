@@ -5,3 +5,7 @@ Simple JSON to CSV and CSV to JSON converter (doesn't work with nested JSON). It
 ## Tech Stack
 
 **Client:** React, HTML, CSS
+
+## Deployment
+
+https://jsontocsv-converter.netlify.app/
